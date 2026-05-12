@@ -4,6 +4,8 @@ function Formulario({ adicionarTarefa }) {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [prioridade, setPrioridade] = useState("");
+  const [dia, setDia] = useState("");
+  const [horario, setHorario] = useState("");
 
   function enviarFormulario(e) {
     e.preventDefault();
@@ -12,6 +14,8 @@ function Formulario({ adicionarTarefa }) {
       titulo,
       descricao,
       prioridade,
+      dia,
+      horario,
     };
 
     adicionarTarefa(novaTarefa);
@@ -47,11 +51,42 @@ function Formulario({ adicionarTarefa }) {
         onChange={(e) => setPrioridade(e.target.value)}
       />
 
+      <select
+        className="form-control mb-3"
+        value={dia}
+        onChange={(e) => setDia(e.target.value)}
+      >
+        <option value="">Selecione o dia</option>
+        <option>Segunda</option>
+        <option>Terça</option>
+        <option>Quarta</option>
+        <option>Quinta</option>
+        <option>Sexta</option>
+      </select>
+
+      <input
+        className="form-control mb-3"
+        type="time"
+        value={horario}
+        onChange={(e) => setHorario(e.target.value)}
+      />
+
       <button className="btn btn-primary">
         Adicionar
       </button>
-    </form>
-  );
-}
 
+<input
+  className="form-control mb-3"
+  type="time"
+  value={horario}
+  onChange={(e) => setHorario(e.target.value)}
+/>
+
+<button className="btn btn-primary">
+  Adicionar
+</button>
+
+</form>
+);
+}
 export default Formulario;

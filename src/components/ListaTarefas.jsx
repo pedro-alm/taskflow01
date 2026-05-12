@@ -1,4 +1,7 @@
-function ListaTarefas({ tarefas }) {
+function ListaTarefas({
+  tarefas,
+  excluirTarefa,
+}) {
   return (
     <div className="mt-4">
       {tarefas.map((tarefa, index) => (
@@ -8,6 +11,21 @@ function ListaTarefas({ tarefas }) {
           <p>{tarefa.descricao}</p>
 
           <strong>{tarefa.prioridade}</strong>
+
+          <p>
+            <strong>Dia:</strong> {tarefa.dia}
+          </p>
+
+          <p>
+            <strong>Horário:</strong> {tarefa.horario}
+          </p>
+
+          <button
+            className="btn btn-danger mt-2"
+            onClick={() => excluirTarefa(index)}
+          >
+            Excluir
+          </button>
         </div>
       ))}
     </div>

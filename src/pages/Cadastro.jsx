@@ -25,13 +25,29 @@ function Cadastro() {
     );
   }
 
+  function excluirTarefa(index) {
+    const novasTarefas = tarefas.filter(
+      (_, i) => i !== index
+    );
+
+    setTarefas(novasTarefas);
+
+    localStorage.setItem(
+      "tarefas",
+      JSON.stringify(novasTarefas)
+    );
+  }
+
   return (
     <div>
       <h1>Cadastro de Tarefas</h1>
 
       <Formulario adicionarTarefa={adicionarTarefa} />
 
-      <ListaTarefas tarefas={tarefas} />
+      <ListaTarefas
+        tarefas={tarefas}
+        excluirTarefa={excluirTarefa}
+      />
     </div>
   );
 }
