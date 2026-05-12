@@ -17,12 +17,23 @@ function ListaTarefas({
           </p>
 
           <p>
+<<<<<<< HEAD
             <strong>Horário:</strong> {tarefa.horario}
+=======
+            <strong>Horário:</strong>{" "}
+            {tarefa.horario}
+>>>>>>> 3b05666409d58bb918123325c3f6ab576a6b8d96
           </p>
 
           <button
             className="btn btn-danger mt-2"
+<<<<<<< HEAD
             onClick={() => excluirTarefa(index)}
+=======
+            onClick={() =>
+              excluirTarefa(index)
+            }
+>>>>>>> 3b05666409d58bb918123325c3f6ab576a6b8d96
           >
             Excluir
           </button>

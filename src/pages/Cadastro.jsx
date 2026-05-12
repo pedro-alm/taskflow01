@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Formulario from "../components/Formulario";
 import ListaTarefas from "../components/ListaTarefas";
 
 function Cadastro() {
-  const [tarefas, setTarefas] = useState([]);
-
-  useEffect(() => {
+  const [tarefas, setTarefas] = useState(() => {
     const dadosSalvos = localStorage.getItem("tarefas");
 
-    if (dadosSalvos) {
-      setTarefas(JSON.parse(dadosSalvos));
-    }
-  }, []);
+    return dadosSalvos
+      ? JSON.parse(dadosSalvos)
+      : [];
+  });
 
   function adicionarTarefa(tarefa) {
     const novasTarefas = [...tarefas, tarefa];
