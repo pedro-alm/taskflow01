@@ -15,6 +15,10 @@ function ListaTarefas({
           <p>
             <strong>Dia:</strong> {tarefa.dia}
           </p>
+          
+          <p>
+            <strong>Mês:</strong> {tarefa.mes}
+          </p>
 
           <p>
             <strong>Horário:</strong>{" "}

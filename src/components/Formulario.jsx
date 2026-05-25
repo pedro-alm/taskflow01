@@ -9,6 +9,7 @@ function Formulario({ adicionarTarefa }) {
   const [dia, setDia] = useState("");
   const [horario, setHorario] =
     useState("");
+  const [mes, setMes] = useState("");
 
   function enviarFormulario(e) {
     e.preventDefault();
@@ -18,6 +19,7 @@ function Formulario({ adicionarTarefa }) {
       descricao,
       prioridade,
       dia,
+      mes,
       horario,
     };
 
@@ -78,6 +80,31 @@ function Formulario({ adicionarTarefa }) {
         <option>Quarta</option>
         <option>Quinta</option>
         <option>Sexta</option>
+      </select>
+
+      <select
+        className="form-control mb-3"
+        value={mes}
+        onChange={(e) =>
+         setMes(e.target.value)
+        }
+      >
+        <option value="">
+          Selecione o mês
+        </option>
+
+        <option>Janeiro</option>
+        <option>Fevereiro</option>
+        <option>Março</option>
+        <option>Abril</option>
+        <option>Maio</option>
+        <option>Junho</option>
+        <option>Julho</option>
+        <option>Agosto</option>
+        <option>Setembro</option>
+        <option>Outubro</option>
+        <option>Novembro</option>
+        <option>Dezembro</option>
       </select>
 
       <input
