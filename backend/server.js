@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import Tarefa from "./models/tarefa.js";
 
 const app = express();
 
@@ -17,6 +18,66 @@ mongoose
   .catch((erro) => {
     console.log("Erro:", erro);
   });
+
+app.get("/api/tarefas", async (req, res) => {
+  try {
+    const tarefas = await Tarefa.find();
+    res.json(tarefas);
+  } catch (erro) {
+    res.status(500).json({
+      erro: erro.message,
+    });
+  }
+});
+
+app.post("/api/tarefas", async (req, res) => {
+  try {
+    const tarefa = await Tarefa.create(req.body);
+
+    res.status(201).json(tarefa);
+  } catch (erro) {
+    res.status(500).json({
+      erro: erro.message,
+    });
+  }
+});
+
+app.put("/api/tarefas/:id", async (req, res) => {
+  try {
+    const tarefa =
+      await Tarefa.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+
+    res.json(tarefa);
+  } catch (erro) {
+    res.status(500).json({
+      erro: erro.message,
+    });
+  }
+});
+
+app.delete(
+  "/api/tarefas/:id",
+  async (req, res) => {
+    try {
+      await Tarefa.findByIdAndDelete(
+        req.params.id
+      );
+
+      res.json({
+        mensagem:
+          "Tarefa removida com sucesso",
+      });
+    } catch (erro) {
+      res.status(500).json({
+        erro: erro.message,
+      });
+    }
+  }
+);
 
 app.listen(3001, () => {
   console.log(

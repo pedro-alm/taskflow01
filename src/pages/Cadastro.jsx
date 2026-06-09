@@ -1,46 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Formulario from "../components/Formulario";
 import ListaTarefas from "../components/ListaTarefas";
 
 function Cadastro() {
-  const [tarefas, setTarefas] = useState(() => {
-    const dadosSalvos = localStorage.getItem("tarefas");
+  const [tarefas, setTarefas] = useState([]);
 
-    return dadosSalvos
-      ? JSON.parse(dadosSalvos)
-      : [];
-  });
+  useEffect(() => {
+    buscarTarefas();
+  }, []);
 
-  function adicionarTarefa(tarefa) {
-    const novasTarefas = [...tarefas, tarefa];
-
-    setTarefas(novasTarefas);
-
-    localStorage.setItem(
-      "tarefas",
-      JSON.stringify(novasTarefas)
+  async function buscarTarefas() {
+    const resposta = await fetch(
+      "http://localhost:3001/api/tarefas"
     );
+
+    const dados = await resposta.json();
+
+    setTarefas(dados);
   }
 
-  function excluirTarefa(index) {
-    const novasTarefas = tarefas.filter(
-      (_, i) => i !== index
+  async function adicionarTarefa(tarefa) {
+    await fetch(
+      "http://localhost:3001/api/tarefas",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify(tarefa),
+      }
     );
 
-    setTarefas(novasTarefas);
+    buscarTarefas();
+  }
 
-    localStorage.setItem(
-      "tarefas",
-      JSON.stringify(novasTarefas)
+  async function excluirTarefa(id) {
+    await fetch(
+      `http://localhost:3001/api/tarefas/${id}`,
+      {
+        method: "DELETE",
+      }
     );
+
+    buscarTarefas();
   }
 
   return (
     <div>
       <h1>Cadastro de Tarefas</h1>
 
-      <Formulario adicionarTarefa={adicionarTarefa} />
+      <Formulario
+        adicionarTarefa={adicionarTarefa}
+      />
 
       <ListaTarefas
         tarefas={tarefas}

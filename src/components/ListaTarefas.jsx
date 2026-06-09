@@ -4,8 +4,11 @@ function ListaTarefas({
 }) {
   return (
     <div className="mt-4">
-      {tarefas.map((tarefa, index) => (
-        <div className="card p-3 mb-3" key={index}>
+      {tarefas.map((tarefa) => (
+        <div
+          className="card p-3 mb-3"
+          key={tarefa._id}
+        >
           <h3>{tarefa.titulo}</h3>
 
           <p>{tarefa.descricao}</p>
@@ -15,7 +18,7 @@ function ListaTarefas({
           <p>
             <strong>Dia:</strong> {tarefa.dia}
           </p>
-          
+
           <p>
             <strong>Mês:</strong> {tarefa.mes}
           </p>
@@ -28,7 +31,7 @@ function ListaTarefas({
           <button
             className="btn btn-danger mt-2"
             onClick={() =>
-              excluirTarefa(index)
+              excluirTarefa(tarefa._id)
             }
           >
             Excluir
