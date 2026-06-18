@@ -20,7 +20,9 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
 
           script: |
-            cd taskflow01/backend
+            cd ~/taskflow01
             git pull
+
+            cd backend
             npm install
             pm2 restart all
