@@ -18,11 +18,15 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
-
           script: |
             cd ~/taskflow01
             git pull
 
-            cd backend
+            cd ~/taskflow01/backend
             npm install
+
+            cd ~/taskflow01
+            npm install --legacy-peer-deps
+            npm run build
+
             pm2 restart all
