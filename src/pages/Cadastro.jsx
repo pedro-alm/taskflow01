@@ -12,7 +12,7 @@ function Cadastro() {
 
   async function buscarTarefas() {
     const resposta = await fetch(
-      "http://localhost:3001/api/tarefas"
+      `${import.meta.env.VITE_API_URL}/api/tarefas`
     );
 
     const dados = await resposta.json();
@@ -22,7 +22,7 @@ function Cadastro() {
 
   async function adicionarTarefa(tarefa) {
     await fetch(
-      "http://localhost:3001/api/tarefas",
+      `${import.meta.env.VITE_API_URL}/api/tarefas`,
       {
         method: "POST",
         headers: {
@@ -38,7 +38,7 @@ function Cadastro() {
 
   async function excluirTarefa(id) {
     await fetch(
-      `http://localhost:3001/api/tarefas/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/tarefas`,
       {
         method: "DELETE",
       }
