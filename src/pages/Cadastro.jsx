@@ -38,7 +38,7 @@ function Cadastro() {
 
   async function excluirTarefa(id) {
     await fetch(
-      `${import.meta.env.VITE_API_URL}/api/tarefas`,
+      `${import.meta.env.VITE_API_URL}/api/tarefas${id}`,
       {
         method: "DELETE",
       }
