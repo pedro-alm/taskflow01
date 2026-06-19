@@ -1,0 +1,38 @@
+name: CI-CD
+
+on:
+  push:
+    branches:
+      - main
+      - feature/add-ci-cd
+
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Instalar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependências
+        run: npm install
+        working-directory: backend
+
+      - name: ESLint
+        run: npm run lint
+        working-directory: backend
+
+      - name: Testes unitários
+        run: npm test
+        working-directory: backend
+
+      - name: Cobertura de testes
+        run: npm run test:coverage
+        working-directory: backend

@@ -1,0 +1,28 @@
+name: Deploy EC2
+
+on:
+  push:
+    branches:
+      - main
+      - feature/add-ci-cd
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy na EC2
+        uses: appleboy/ssh-action@v1.0.3
+
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+
+          script: |
+            cd ~/taskflow01
+            git pull
+
+            cd backend
+            npm install
+            pm2 restart all
