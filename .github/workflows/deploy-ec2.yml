@@ -26,7 +26,7 @@ jobs:
             npm install
 
             cd ~/taskflow01
-            npm install
+            npm install --legacy-peer-deps
             npm run build
 
             pm2 restart all
