@@ -19,10 +19,15 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
 
-          script: |
+        script: |
             cd ~/taskflow01
             git pull
 
-            cd backend
+            cd ~/taskflow01/backend
             npm install
+
+            cd ~/taskflow01
+            npm install
+            npm run build
+
             pm2 restart all
