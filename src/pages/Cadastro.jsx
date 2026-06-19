@@ -49,7 +49,7 @@ function Cadastro() {
 
   return (
     <div>
-      <h1>cadastro</h1>
+      <h1>flarisn3</h1>
 
       <Formulario
         adicionarTarefa={adicionarTarefa}
