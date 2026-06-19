@@ -58,7 +58,7 @@ app.delete("/api/tarefas/:id", async (req, res) => {
 
 // Só inicia o servidor fora do ambiente de teste
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(3001, () => {
+  app.listen(3001, "0.0.0.0", () => {
     console.log("Servidor rodando na porta 3001");
   });
 }
